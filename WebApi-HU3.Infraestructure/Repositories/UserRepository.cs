@@ -54,4 +54,11 @@ public class UserRepository : IUserRepository
         }
         return user;
     }
+
+    // 🔹 nuevo método: obtener usuario por email
+    public async Task<User?> GetUserByEmailAsync(string email)
+    {
+        return await _context.Users
+            .FirstOrDefaultAsync(u => u.Email == email);
+    }
 }
