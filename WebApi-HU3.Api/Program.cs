@@ -1,10 +1,10 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-using WebApi_HU3.Application.Interfaces;
-using WebApi_HU3.Application.Services;
-using WebApi_HU3.Domain.Interfaces;
+//using WebApi_HU3.Application.Interfaces;
+//using WebApi_HU3.Application.Services;
+//using WebApi_HU3.Domain.Interfaces;
 using WebApi_HU3.Infraestructure.Data;
-using WebApi_HU3.Infraestructure.Repositories;
+//using WebApi_HU3.Infraestructure.Repositories;
 
 //using SchoolManagement.Infraestructure.Repositories;
 
