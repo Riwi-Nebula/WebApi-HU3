@@ -26,6 +26,7 @@ namespace WebApi_HU3.Application.Services
         public async Task<AuthResponseDto> RegisterAsync(UserRegisterDto registerDto)
         {
             // 1. Validar si el email ya existe
+            //en esta linea no funciona el GetUserByEmailAsync, creo que no existe
             var existingUser = await _userRepository.GetUserByEmailAsync(registerDto.Email);
             if (existingUser != null)
             {
@@ -39,12 +40,14 @@ namespace WebApi_HU3.Application.Services
             }
 
             // 3. Hashear la contraseña
+            //El BCryp no se porque no funciona
             string passwordHash = BCrypt.Net.BCrypt.HashPassword(registerDto.Password);
 
             var user = new User
             {
                 Username = registerDto.Username,
                 Email = registerDto.Email,
+                //PasswordHash tambien tiene un error
                 PasswordHash = passwordHash, // Usamos el campo corregido
                 Role = userRole
             };
