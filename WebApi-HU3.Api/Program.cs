@@ -38,6 +38,9 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //builder.Services.AddScoped<StudentService>();
 
 
+//Servicios de application
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // =======================================================
 // 3. Controladores y Swagger
