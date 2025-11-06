@@ -9,12 +9,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="52b2cc37-0dfc-4e19-bf6a-434de735dbb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Controllers/StudentController.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Controllers/StudentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Controllers/StudentController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Controllers/UserController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Controllers/UserController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Program.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/WebApi-HU3.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/WebApi-HU3.Api.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Application/Services/UserService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Application/Services/UserService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Application/WebApi-HU3.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Application/WebApi-HU3.Application.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Domain/WebApi-HU3.Domain.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Domain/WebApi-HU3.Domain.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/appsettings.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +128,15 @@
       <option name="project" value="LOCAL" />
       <updated>1762435424596</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Initial commit">
+      <option name="closed" value="true" />
+      <created>1762467734126</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762467734126</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -150,6 +157,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="Initial commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

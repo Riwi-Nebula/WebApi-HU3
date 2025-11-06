@@ -1,10 +1,13 @@
 using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
-//using WebApi_HU3.Application.Interfaces;
-//using WebApi_HU3.Application.Services;
+using WebApi_HU3.Application.Interfaces;
+using WebApi_HU3.Application.Services;
 using WebApi_HU3.Domain.Interfaces;
 using WebApi_HU3.Infraestructure.Data;
 using WebApi_HU3.Infraestructure.Repositories;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Obtiene la cadena desde appsettings.json
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// ⚡ Configura EF Core con autodetección de versión MySQL
+// Configura EF Core con autodetección de versión MySQL
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
 );
@@ -28,19 +31,32 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
-// Servicios de aplicación
-//Ejemplo:
-//builder.Services.AddScoped<StudentService>();
-
-
-// Servicios de aplicación
-//Ejemplo:
-//builder.Services.AddScoped<StudentService>();
-
 
 //Servicios de application
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+//Configura el sistema de autenticación para validar tokens JWT en las solicitudes HTTP.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true, 
+            ClockSkew = TimeSpan.Zero,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
+            )
+        };
+    });
+
+builder.Services.AddAuthorization();
+
 
 // =======================================================
 // 3. Controladores y Swagger
@@ -52,7 +68,7 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "School Management API",
+        Title = "User,Student Management API",
         Version = "v1",
         Description = "API para la gestión de usuarios y estudiantes"
     });
