@@ -40,6 +40,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 //builder.Services.AddScoped<StudentService>();
 
 
+//Servicios de application
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
 // =======================================================
 // 3. Controladores y Swagger
