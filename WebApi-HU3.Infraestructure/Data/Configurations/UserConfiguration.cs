@@ -17,7 +17,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.Email)
             .IsRequired();
         
-        builder.Property(u => u.Password)
+        builder.Property(u => u.PasswordHash)
             .IsRequired();
         
         builder.Property(u => u.Role)
@@ -30,7 +30,7 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             Id = 1,
             Username = "admin",
             Email = "admin@gmail.com",
-            Password = "admin123", // se debe encriptar
+            PasswordHash = "admin123", // se debe encriptar
             Role = UserRole.Admin
         });
     }
