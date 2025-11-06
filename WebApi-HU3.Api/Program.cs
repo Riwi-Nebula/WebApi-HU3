@@ -2,11 +2,9 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 //using WebApi_HU3.Application.Interfaces;
 //using WebApi_HU3.Application.Services;
-//using WebApi_HU3.Domain.Interfaces;
+using WebApi_HU3.Domain.Interfaces;
 using WebApi_HU3.Infraestructure.Data;
-//using WebApi_HU3.Infraestructure.Repositories;
-
-//using SchoolManagement.Infraestructure.Repositories;
+using WebApi_HU3.Infraestructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,8 +25,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // =======================================================
 
 // Repositorios
-//Ejemplo:
-//builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 // Servicios de aplicación
 //Ejemplo:
