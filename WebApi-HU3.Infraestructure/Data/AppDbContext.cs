@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WebApi_HU3.Domain.Entities;
+//using WebApi_HU3.Domain.Entities;
 
 namespace WebApi_HU3.Infraestructure.Data;
 
@@ -7,17 +7,31 @@ public class AppDbContext : DbContext
 {
     public AppDbContext(DbContextOptions<AppDbContext> options) : base(options){}
     
-    //Metodo protegido para definir pruebas adicionales o configuraciones
+    public DbSet<User>  Users { get; set; }
+    public DbSet<Student>   Students { get; set; }
+    
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //Ejemplo:
-        // modelBuilder.Entity<Student>()
-        //     .HasIndex(s => s.Email)
-        //     .IsUnique();W
-        //Esto crea un indice unico sobre el campo de del email en la tabla de students
         base.OnModelCreating(modelBuilder);
+        
+        //configuracion de 'User'
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(u => u.Id);
+            entity.Property(u => u.UserName).IsRequired().HasMaxLength(50);
+            entity.Property(u => u.Email).IsRequired();
+            entity.Property(u => u.PasswordHash).IsRequired();
+            entity.Property(u => u.Role).IsRequired();
+
+        });
+        
+        //configuracion de 'Student'
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(s => s.Id);
+            entity.Property(s => s.FullName).IsRequired().HasMaxLength(100);
+            entity.Property(s => s.Email).IsRequired();
+        });
     }
     
-    //Aca agregan las entidades con las que se van a crear las tablas
-    //Ejemplo: public DbSet<Course> Courses { get; set; }
 }
