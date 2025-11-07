@@ -1,0 +1,6 @@
+build:
+  docker:
+    web: WebApi-HU3.Api/Dockerfile
+
+run:
+  web: dotnet WebApi-HU3.Api.dll
