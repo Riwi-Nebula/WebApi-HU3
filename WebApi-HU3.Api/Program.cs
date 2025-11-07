@@ -25,7 +25,6 @@ builder.Services.AddInfrastructure(builder.Configuration);
 // 2. Inyección de dependencias
 // =======================================================
 
-builder.Services.AddScoped<IAuthService, AuthService>();
 // Repositorios
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
@@ -34,6 +33,7 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 //Servicios de application
 builder.Services.AddScoped<IStudentService, StudentService>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 //Configura el sistema de autenticación para validar tokens JWT en las solicitudes HTTP.
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -44,7 +44,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuer = true,
             ValidateAudience = true,
             ValidateLifetime = true,
-            ValidateIssuerSigningKey = true, 
+            ValidateIssuerSigningKey = true,
             ClockSkew = TimeSpan.Zero,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
@@ -80,7 +80,7 @@ builder.Services.AddSwaggerGen(c =>
 try
 {
     var app = builder.Build();
-    
+
     // Test the connection to the database
     using (var scope = app.Services.CreateScope())
     {

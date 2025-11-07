@@ -1,27 +1,28 @@
-# 📘 School Management API v1
+# Documentación de la API
 
-API para la gestión de **usuarios** y **estudiantes**.  
-Permite el registro, autenticación y administración de estudiantes y usuarios (roles).
+**URL Base de la API (Producción):**  
+`https://students-web-fb5f86739d1b.herokuapp.com`
+
+Esta API permite la gestión de **Usuarios** y **Estudiantes**.  
+El sistema maneja Roles:
+
+| Rol           | Permisos |
+| ----          |---------|
+| **Admin**     | Puede gestionar **Usuarios** y **Estudiantes** |
+| **User**      | Puede gestionar solo **Estudiantes** |
+
+Los roles se asignan al momento del registro de un User.
 
 ---
 
-## 🌐 Base URL
+## Autenticación (Auth)
 
-```
-http://localhost:5268
-```
+### Login
 
- ¡¡ **ANTES DE DESPLIEGUE** !!
+**POST** `/api/Auth/Login`
 
----
+**Body (JSON):**
 
-## 🔐 Autenticación (`/api/auth/Auth`)
-
-### **POST** `/api/auth/Auth/login`
-
-Inicia sesión con correo y contraseña.
-
-#### 🧾 Request body
 ```json
 {
   "email": "string",
@@ -29,95 +30,52 @@ Inicia sesión con correo y contraseña.
 }
 ```
 
-#### 📤 Response (200 OK)
-- Devuelve un **token JWT** que debe incluirse en los headers de las siguientes peticiones:
-  ```
-  Authorization: Bearer <token>
-  ```
+**Respuesta exitosa:**
+Devuelve un **JWT token** que debes enviar en el `Authorization Header`:
 
-#### ❌ Errores posibles
-| Código | Descripción |
-|--------|--------------|
-| 400 | Bad Request |
-| 401 | Unauthorized |
-| 500 | Internal Server Error |
+```json
+{
+  "Authorization": "Bearer <token>"
+}
+```
 
 ---
 
-### **POST** `/api/auth/Auth/register`
+### Register
 
-Registra un nuevo usuario con rol.
+**POST** `/api/Auth/Register`
 
-#### 🧾 Request body
+**Body (JSON):**
+
 ```json
 {
   "username": "string",
   "email": "string",
   "password": "string",
-  "role": "string"
+  "role": "Admin" | "User"
 }
 ```
 
-#### 📤 Response
-| Código | Descripción |
-|--------|--------------|
-| 200 | OK |
-| 400 | Bad Request |
-| 500 | Internal Server Error |
+---
+
+## Estudiantes (Student)
+
+> Accesible por **Admin** y **User**
+
+### Obtener todos los estudiantes
+
+**GET** `/api/Student`
+
+**Respuesta:** Lista de estudiantes.
 
 ---
 
-## 👨‍🎓 Student (`/api/Student`)
+### Crear un estudiante
 
-### **GET** `/api/Student`
+**POST** `/api/Student`
 
-Obtiene la lista de todos los estudiantes.  
-**Requiere autenticación (Bearer token)**
+**Body (JSON):**
 
-#### 📤 Response (200 OK)
-```json
-[
-  {
-    "id": 1,
-    "firstName": "string",
-    "lastName": "string",
-    "email": "string"
-  }
-]
-```
-
----
-
-### **POST** `/api/Student`
-
-Crea un nuevo estudiante.
-
-#### 🧾 Request body
-```json
-{
-  "firstName": "string",
-  "lastName": "string",
-  "email": "string"
-}
-```
-
-#### 📤 Response
-| Código | Descripción |
-|--------|--------------|
-| 200 | OK |
-
----
-
-### **GET** `/api/Student/{id}`
-
-Obtiene los datos de un estudiante por su ID.
-
-#### 🔸 Parámetros
-| Nombre | Tipo | Ubicación | Requerido |
-|---------|------|------------|------------|
-| id | integer | path | ✅ |
-
-#### 📤 Response
 ```json
 {
   "firstName": "string",
@@ -128,11 +86,18 @@ Obtiene los datos de un estudiante por su ID.
 
 ---
 
-### **PUT** `/api/Student/{id}`
+### Obtener estudiante por ID
 
-Actualiza la información de un estudiante.
+**GET** `/api/Student/{id}`
 
-#### 🧾 Request body
+---
+
+### Actualizar estudiante
+
+**PUT** `/api/Student/{id}`
+
+**Body (JSON):**
+
 ```json
 {
   "firstName": "string",
@@ -143,116 +108,75 @@ Actualiza la información de un estudiante.
 
 ---
 
-### **DELETE** `/api/Student/{id}`
+### Eliminar estudiante
 
-Elimina un estudiante por su ID.
-
-#### 🔸 Parámetros
-| Nombre | Tipo | Ubicación | Requerido |
-|---------|------|------------|------------|
-| id | integer | path | ✅ |
+**DELETE** `/api/Student/{id}`
 
 ---
 
-## 👤 User (`/api/User`)
+## Usuarios (User)
 
-### **POST** `/api/User/register`
+> **Solo Admin** puede usar estos endpoints.
 
-Crea un nuevo usuario.
+### Obtener todos los usuarios
 
-#### 🧾 Request body
-```json
-{
-  "username": "string",
-  "email": "string",
-  "password": "string",
-  "role": "string"
-}
-```
+**GET** `/api/User`
 
 ---
 
-### **POST** `/api/User/login`
+### Obtener usuario por ID
 
-Inicia sesión de usuario (retorna token JWT).
-
-#### 🧾 Request body
-```json
-{
-  "email": "string",
-  "password": "string"
-}
-```
+**GET** `/api/User/{id}`
 
 ---
 
-### **GET** `/api/User`
+### Actualizar usuario
 
-Obtiene todos los usuarios (requiere rol autorizado).
+**PUT** `/api/User/{id}`
 
----
+**Body (JSON):**
 
-### **GET** `/api/User/{id}`
-
-Obtiene la información de un usuario por ID.
-
-#### 🔸 Parámetros
-| Nombre | Tipo | Ubicación | Requerido |
-|---------|------|------------|------------|
-| id | integer | path | ✅ |
-
----
-
-### **PUT** `/api/User/{id}`
-
-Actualiza la información de un usuario.
-
-#### 🧾 Request body
 ```json
 {
   "id": 0,
   "username": "string",
   "email": "string",
-  "role": "string"
+  "role": "Admin" | "User"
 }
 ```
 
 ---
 
-### **DELETE** `/api/User/{id}`
+### Eliminar usuario
 
-Elimina un usuario por su ID.
-
-#### 🔸 Parámetros
-| Nombre | Tipo | Ubicación | Requerido |
-|---------|------|------------|------------|
-| id | integer | path | ✅ |
+**DELETE** `/api/User/{id}`
 
 ---
 
-## 📦 Esquemas (DTOs)
+## Uso del Token en Frontend
 
-| Nombre | Campos |
-|--------|---------|
-| `StudentCreateDto` | firstName, lastName, email |
-| `StudentUpdateDto` | firstName, lastName, email |
-| `UserDto` | id, username, email, role |
-| `UserLoginDto` | email, password |
-| `UserRegisterDto` | username, email, password, role |
+Enviar el token en cada request que requiera autenticación:
 
----
-
-## ⚙️ Notas para Frontend
-
-- Todas las peticiones protegidas requieren incluir el **token JWT** en el header:
-  ```
-  Authorization: Bearer <token>
-  ```
-- Las rutas `/User` y `/Student` usan formato **JSON**.
-- Los roles pueden usarse para definir permisos en el frontend según el `role` recibido al iniciar sesión.
-- Endpoint del Swagger:  
-  [http://localhost:5268/swagger/index.html](http://localhost:5268/swagger/index.html)
+```json
+fetch(url, {
+  method: "GET",
+  headers: {
+    "Authorization": "Bearer <TOKEN>"
+  }
+})
+```
 
 ---
 
-© 2025 School Management API
+## Notas Finales
+
+- `Student` es una tabla de registro simple.
+- El **rol** determina el alcance del usuario.
+- Un **Admin** puede administrar todo.
+- Un **User** solo maneja estudiantes.
+
+---
+
+![Casos de uso Api](./Assets/Images/XPJ1QiCm38RlVWgHqtOesTXzD6oX30eBJRAxYRNCpB63ey1AoRlFQSlgjdO78GJzdwHV4cGv4BSqTegH98MG5M-mCGe7s4AkHM-afW4My24T22lKQBbYRFYMkkUMTs2n8QvRXILjNRurenOeF43W9nyLLVX3cPAjxb0JDEw5rgTw2OzF3upzrOF4UKbWnm3SuuT7-e8NeyaQfT0U482xUqYAzxA2bFSodQ5qRLgfavYwmTODvGeuO6BdFK.png)
+
+Fin de documento.

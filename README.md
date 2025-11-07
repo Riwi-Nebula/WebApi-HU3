@@ -139,7 +139,3 @@ Funcionalidad mínima exigida:
 ![Generación de Token JWT](./Assets/Images/Login_JWT.png)
 
 ---
-
-## Instalación y Configuración
-
-Pendiente de completar.
