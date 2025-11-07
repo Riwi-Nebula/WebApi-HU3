@@ -177,6 +177,7 @@ fetch(url, {
 
 ---
 
-![Casos de uso Api](./Assets/Images/XPJ1QiCm38RlVWgHqtOesTXzD6oX30eBJRAxYRNCpB63ey1AoRlFQSlgjdO78GJzdwHV4cGv4BSqTegH98MG5M-mCGe7s4AkHM-afW4My24T22lKQBbYRFYMkkUMTs2n8QvRXILjNRurenOeF43W9nyLLVX3cPAjxb0JDEw5rgTw2OzF3upzrOF4UKbWnm3SuuT7-e8NeyaQfT0U482xUqYAzxA2bFSodQ5qRLgfavYwmTODvGeuO6BdFK.png)
+Api Diagrama
+![Casos de uso Api](./Assets/Images/API.png)
 
 Fin de documento.
