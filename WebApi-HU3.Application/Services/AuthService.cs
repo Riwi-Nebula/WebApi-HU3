@@ -34,22 +34,26 @@ public class AuthService : IAuthService
         if (!passwordValid)
             return null;
 
-        // Generar JWT
-        var tokenHandler = new JwtSecurityTokenHandler();
-        var key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
-        var tokenDescriptor = new SecurityTokenDescriptor
+        //Generar token claims
+        var claims = new[]
         {
-            Subject = new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
-                new Claim(ClaimTypes.Email, user.Email)
-            }),
-            Expires = DateTime.UtcNow.AddHours(2),
-            SigningCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
+            new Claim(JwtRegisteredClaimNames.Sub, user.Username),
+            new Claim(ClaimTypes.Role, user.Role.ToString()),
+            new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
         };
 
-        var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]!));
+        var cred = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+
+        //Create Token
+        var token = new JwtSecurityToken(
+            issuer: _configuration["Jwt:Issuer"],
+            audience: _configuration["Jwt:Audience"],
+            claims: claims,
+            expires: DateTime.Now.AddMinutes(30),
+            signingCredentials: cred
+        );
+        
+        return new JwtSecurityTokenHandler().WriteToken(token);
     }
 }

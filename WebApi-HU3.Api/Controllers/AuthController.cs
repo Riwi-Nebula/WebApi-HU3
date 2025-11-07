@@ -6,7 +6,7 @@ namespace WebApi_HU3.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-public class AuthController : ControllerBase
+public class AuthController : ControllerBase    
 {
     private readonly IAuthService _authService;
     private readonly IUserService _userService;
