@@ -1,124 +1,197 @@
-# webEscuela - API REST en .NET
+# 🌐 WebApi HU3 – Sistema de Gestión de Usuarios y Estudiantes
 
-## Índice
+## 📘 Descripción General
 
-- [webEscuela - API REST en .NET](#webescuela---api-rest-en-net)
-  - [Índice](#índice)
-  - [Objetivo General](#objetivo-general)
-  - [Alcance](#alcance)
-    - [Usuarios](#usuarios)
-    - [Estudiantes](#estudiantes)
-  - [Entregables por equipo](#entregables-por-equipo)
-  - [Estructura de Proyectos Recomendada (DDD / Capas)](#estructura-de-proyectos-recomendada-ddd--capas)
-    - [webEscuela.Api](#webescuelaapi)
-    - [webEscuela.Application](#webescuelaapplication)
-    - [webEscuela.Domain](#webescueladomain)
-    - [webEscuela.Infrastructure](#webescuelainfrastructure)
-  - [Tecnologías](#tecnologías)
-  - [Modelado de Datos](#modelado-de-datos)
-    - [Diagrama Entidad-Relación (ER)](#diagrama-entidad-relación-er)
-    - [Diagrama de Clases](#diagrama-de-clases)
-  - [Casos de Uso](#casos-de-uso)
-  - [Secuencias](#secuencias)
-    - [Generación de Token JWT](#generación-de-token-jwt)
-  - [Instalación y Configuración](#instalación-y-configuración)
+**WebApi HU3** es una aplicación desarrollada en **ASP.NET Core** que implementa una arquitectura por capas (Domain, Application, Infrastructure y API).  
+El sistema permite la **gestión de usuarios y estudiantes**, con autenticación mediante **JSON Web Tokens (JWT)** para proteger los endpoints.  
+Está diseñado con fines **académicos y profesionales**, siguiendo buenas prácticas de programación y patrones de diseño.
+
+### 🎯 Objetivos del Sistema
+- Gestionar usuarios (registro, autenticación, roles).
+- Administrar estudiantes (creación, actualización, eliminación y consulta).
+- Proteger las operaciones mediante autenticación JWT.
+- Implementar un entorno modular y escalable.
 
 ---
 
-## Objetivo General
+## 🏗️ Arquitectura del Proyecto
 
-Desarrollar una API REST en .NET con arquitectura en capas (API, Application, Domain, Infrastructure) que implemente:
+El proyecto sigue una **arquitectura limpia (Clean Architecture)**, separando las responsabilidades en distintas capas:
 
-- CRUD de Usuarios (con roles básicos).
-- CRUD de Estudiantes.
-- Autenticación JWT (registro y login).
-- Documentación con Swagger.
-- Dockerización (API + MySQL).
+```
+WebApi-HU3-develop/
+│
+├── WebApi-HU3.Api/ → Capa de presentación (controladores, configuración de JWT, endpoints)
+├── WebApi-HU3.Application/ → Lógica de negocio (servicios, DTOs, validaciones)
+├── WebApi-HU3.Domain/ → Entidades principales e interfaces de repositorio
+├── WebApi-HU3.Infraestructure/ → Acceso a datos, contexto EF Core, repositorios
+└── Assets/ → Diagramas y documentación (Casos de uso, ERD, JWT, etc.)
+```
 
-Los equipos entregarán código, migraciones, docker-compose funcional y una colección Postman.
-
----
-
-## Alcance
-
-Funcionalidad mínima exigida:
-
-### Usuarios
-
-- `POST /api/auth/register` — registrar usuario (username, email, password, role).
-- `POST /api/auth/login` — login -> devuelve JWT.
-- `GET /api/users` — listar (protegido, rol Admin).
-- `GET /api/users/{id}` — obtener por id (protegido).
-- `PUT /api/users/{id}` — actualizar (protegido).
-- `DELETE /api/users/{id}` — eliminar (protegido).
-
-### Estudiantes
-
-- `POST /api/students` — crear (protegido).
-- `GET /api/students` — listar (protegido).
-- `GET /api/students/{id}` — obtener por id (protegido).
-- `PUT /api/students/{id}` — actualizar (protegido).
-- `DELETE /api/students/{id}` — eliminar (protegido).
-
-**Protección:** todas las rutas excepto register y login requieren JWT válido. Algunas rutas (p. ej., usuarios list/delete) restringidas a rol Admin.
+Cada capa comunica solo lo necesario con la siguiente, asegurando bajo acoplamiento y alta cohesión.
 
 ---
 
-## Entregables por equipo
+## 🛠️ Tecnologías Utilizadas
 
-1. Repositorio GitHub con solución en C# (4 proyectos).
-2. `docker-compose.yml` funcional (API + MySQL + Adminer opcional).
-3. Migraciones EF Core en el repo y DbContext configurado.
-4. Collection Postman exportada.
-5. Al menos 2 pruebas unitarias en la capa Application (ej.: validación de creación de estudiante, verificación de login).
-
----
-
-## Estructura de Proyectos Recomendada (DDD / Capas)
-
-### webEscuela.Api
-
-- Controladores, middleware, inyección de dependencias (`Program.cs`).
-- Orquesta llamadas hacia Application.
-
-### webEscuela.Application
-
-- Servicios (use-cases), DTOs, interfaces de servicios y casos de negocio.
-- Pruebas unitarias que validen lógica de negocio.
-- Ejemplos: `IUserService`, `IStudentService`, `UserService`, `StudentService`.
-
-### webEscuela.Domain
-
-- Entidades puras y reglas de dominio (POCOs).
-- Repositorios interfaces del dominio (`IUserRepository`, `IStudentRepository`).
-- Value objects, exceptions de dominio.
-
-### webEscuela.Infrastructure
-
-- Implementaciones concretas: `EfDbContext`, `UserRepository : IUserRepository`.
-- Mapeos EF Core, migraciones, seed data.
-- Persistencia y acceso a MySQL.
-
-**Flujo:** Controller (API) → Service (Application) → Repository (Infrastructure) → Db (MySQL).
+- **.NET 8 / ASP.NET Core Web API**
+- **Entity Framework Core** (acceso a datos y migraciones)
+- **JWT (JSON Web Token)** para autenticación
+- **C# 12**
+- **SQL Server** (base de datos)
+- **Visual Studio / Rider / VS Code**
+- **Swagger** para documentación de endpoints
 
 ---
 
-## Tecnologías
+## ⚙️ Configuración y Ejecución
 
-- C# / .NET 7+
-- Entity Framework Core
-- MySQL
-- Docker + Docker Compose
-- JWT (Json Web Token)
-- Swagger (documentación API)
+### 🔹 Requisitos Previos
+- .NET SDK 8.0 o superior
+- SQL Server o base de datos compatible
+- Herramienta de desarrollo: Rider, Visual Studio o VS Code
+
+### 🔹 Pasos de Instalación
+
+1. **Clonar el repositorio:**
+```bash
+   git clone https://github.com/tuusuario/WebApi-HU3.git
+   cd WebApi-HU3-develop
+```
+2. **Configurar la cadena de conexión** en el archivo:
+
+```bash
+WebApi-HU3.Api/appsettings.json
+```
+
+3. Aplicar migraciones y crear la base de datos:
+
+```bash
+cd WebApi-HU3.Infraestructure
+dotnet ef database update
+```
+
+4. Ejecutar el proyecto:
+
+```bash
+cd ../WebApi-HU3.Api
+dotnet run
+```
+
+5. Abrir en el navegador:
+
+```bash
+https://students-web-fb5f86739d1b.herokuapp.com/index.html
+```
+
+🔐 Autenticación JWT
+
+El sistema utiliza JWT Bearer Tokens para autenticar y autorizar usuarios.
+🔸 Flujo Básico:
+
+1. El usuario se registra o inicia sesión mediante /api/Auth/login.
+
+2. El servidor genera un token JWT firmado.
+
+3. El cliente incluye el token en el encabezado de cada petición:
+
+```bash
+    Authorization: Bearer {token}
+```
 
 ---
 
-## Modelado de Datos
+## 🧾 Endpoints Principales
+
+Los ficheros fuente están en:
+`WebApi-HU3-develop/WebApi-HU3.Api/Controllers/`
+
+---
+
+## 🧩 **AuthController**
+**Ruta base:** `/api/Auth`
+
+### `POST /api/Auth/Login`
+**Propósito:** autenticar y devolver `AuthResponseDto` con Token + User.  
+**Autorización:** público (no requiere token).
+
+---
+
+### `POST /api/Auth/Register`
+**Propósito:** crear un nuevo usuario (acepta `UserRegisterDto` con `Username`, `Email`, `Password`, `Role`).  
+**Autorización:** público (no requiere token).
+
+> 📝 **Nota:** Actualmente el cliente puede indicar `Role` en el body (ver DTO `UserRegisterDto.Role`).
+
+---
+
+## 👤 **UserController**
+**Ruta base:** `/api/User`
+
+### `GET /api/User`
+**Propósito:** listar todos los usuarios.  
+**Autorización:** `[Authorize(Roles = "Admin")]` → solo **Admin**.
+
+---
+
+### `GET /api/User/{id}`
+**Propósito:** obtener un usuario por ID.  
+**Autorización:** `[Authorize]` → cualquier usuario autenticado (**Admin** o **User**).
+
+---
+
+### `PUT /api/User/{id}`
+**Propósito:** actualizar un usuario existente.  
+**Autorización:** `[Authorize(Roles = "Admin")]` → solo **Admin**.
+
+---
+
+### `DELETE /api/User/{id}`
+**Propósito:** eliminar un usuario.  
+**Autorización:** `[Authorize(Roles = "Admin")]` → solo **Admin**.
+
+📂 Estos atributos se encuentran en  
+`WebApi-HU3.Api/Controllers/UserController.cs`.
+
+---
+
+## 🎓 **StudentController**
+**Ruta base:** `/api/Student`
+
+| Método | Endpoint | Descripción | Autorización |
+|---------|-----------|-------------|---------------|
+| `GET` | `/api/Student` | Listar estudiantes. | Pública |
+| `GET` | `/api/Student/{id}` | Obtener estudiante por ID. | Pública |
+| `POST` | `/api/Student` | Crear un nuevo estudiante. | Pública |
+| `PUT` | `/api/Student/{id}` | Actualizar estudiante. | Pública |
+| `DELETE` | `/api/Student/{id}` | Eliminar estudiante. | Pública |
+
+> ⚠️ En el código actual **no hay ningún `[Authorize]`** en la clase ni en los métodos de `StudentController`,  
+> por tanto, **todos los endpoints son públicos** (no requieren token).
+
+---
+
+## 🧾 **Roles definidos en el dominio**
+
+**Archivo:**  
+`WebApi-HU3.Domain/Entities/UserRole.cs`
+
+```csharp
+public enum UserRole
+{
+    Admin,
+    User
+}
+```
+---
+
+## 🧩 Diagramas y Documentación
 
 ### Diagrama Entidad-Relación (ER)
 
 ![Diagrama ER](./Assets/Images/Entidad_Relacion.png)
+
+---
 
 ### Diagrama de Clases
 
@@ -139,7 +212,3 @@ Funcionalidad mínima exigida:
 ![Generación de Token JWT](./Assets/Images/Login_JWT.png)
 
 ---
-
-## Instalación y Configuración
-
-Pendiente de completar.
