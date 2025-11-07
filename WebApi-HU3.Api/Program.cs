@@ -73,6 +73,22 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
+// ======================
+//  CONFIGURACIÓN DE CORS
+// ======================
+var corsPolicyName = "AllowSpecificOrigins";
+
+builder.Services.AddCors( options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod(); // si el front envía cookies o auth headers
+        });
+});
+
 // =======================================================
 // 4. Construcción y pipeline
 // =======================================================
