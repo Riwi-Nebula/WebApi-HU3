@@ -8,6 +8,7 @@ using WebApi_HU3.Infraestructure.Repositories;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using WebApi_HU3.Infraestructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,13 +17,10 @@ var builder = WebApplication.CreateBuilder(args);
 // =======================================================
 
 // Obtiene la cadena desde appsettings.json
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
 // Configura EF Core con autodetección de versión MySQL
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
-);
 
+builder.Services.AddInfrastructure(builder.Configuration);
 // =======================================================
 // 2. Inyección de dependencias
 // =======================================================
@@ -78,21 +76,28 @@ builder.Services.AddSwaggerGen(c =>
 // 4. Construcción y pipeline
 // =======================================================
 
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
+    var app = builder.Build();
+
+    if (app.Environment.IsDevelopment())
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "School Management API v1");
-        c.RoutePrefix = string.Empty;
-    });
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "School Management API v1");
+            c.RoutePrefix = string.Empty;
+        });
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.MapControllers();
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-app.Run();
-
-public partial class Program { }
+catch (Exception ex)
+{
+    Console.WriteLine($"❌ Error al iniciar la aplicación: {ex.Message}");
+    Console.WriteLine(ex.StackTrace);
+}
