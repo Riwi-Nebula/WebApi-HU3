@@ -9,35 +9,43 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52b2cc37-0dfc-4e19-bf6a-434de735dbb0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApi-HU3.Infraestructure/Data/Configurations/AppDbContextFactoy.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docker-compose.yaml" afterDir="false" />
+    <list default="true" id="ba0c35e6-13c4-457a-94b5-61d9481cb8e4" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/WebApi-HU3.Infraestructure/Extensions/ServiceCollectionExtensions.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApi-HU3/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApi-HU3/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApi-HU3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApi-HU3/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Program.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Properties/launchSettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Properties/launchSettings.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/WebApi-HU3.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/WebApi-HU3.Api.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/appsettings.json" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/appsettings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Application/WebApi-HU3.Application.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Application/WebApi-HU3.Application.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Infraestructure/Data/Configurations/AppDbContextFactoy.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/WebApi-HU3.Infraestructure/WebApi-HU3.Infraestructure.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Infraestructure/WebApi-HU3.Infraestructure.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="firstShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="develop" />
+        <entry key="$PROJECT_DIR$" value="main" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory">{
-  &quot;lastFilter&quot;: {
-    &quot;state&quot;: &quot;OPEN&quot;,
-    &quot;assignee&quot;: &quot;Sarahorianna2006&quot;
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "Farag0n"
   }
-}</component>
+}]]></component>
   <component name="GithubPullRequestsUISettings"><![CDATA[{
   "selectedUrlAndAccountId": {
     "url": "https://github.com/Riwi-Nebula/WebApi-HU3.git",
@@ -45,45 +53,33 @@
   }
 }]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Api/Controllers/AuthController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Api/Controllers/StudentController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Api/Controllers/UserController.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Api/Program.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/faragon/Desktop/Repos/WebApi-HU3/WebApi-HU3.Api/appsettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="mock:///home/faragon/Desktop/Repos/WebApi-HU3/WebApi-HU3.Api/appsettings.json" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Infraestructure/Data/Configurations/AppDbContextFactoy.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Infraestructure/Data/Configurations/StudentConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Infraestructure/Data/Configurations/UserConfiguration.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Infraestructure/Repositories/StudentRepository.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Infraestructure/Repositories/UserRepository.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/WebApi-HU3.Infraestructure/Extensions/ServiceCollectionExtensions.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
-  <component name="ProjectColorInfo">{
-  &quot;customColor&quot;: &quot;&quot;,
-  &quot;associatedIndex&quot;: 4
-}</component>
-  <component name="ProjectId" id="356WGc1UOtdU2JvobVXSQtvuoOz" />
-  <component name="ProjectLevelVcsManager">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 4
+}]]></component>
+  <component name="ProjectId" id="359GXv5FPBUextfIxntrnXbT0d6" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;feature/miguel-angarita&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    ".NET Launch Settings Profile.WebApi-HU3.Api: http.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "feature/miguel-angarita",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected=".NET Launch Settings Profile.WebApi-HU3.Api: http">
     <configuration name="WebApi-HU3.Api: http" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/WebApi-HU3.Api/WebApi-HU3.Api.csproj" />
@@ -120,18 +116,8 @@
     <configuration name="WebApi-HU3.Api/Dockerfile" type="docker-deploy" factoryName="dockerfile" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
-          <option name="imageTag" value="webapi-hu3.api" />
           <option name="containerName" value="webapi-hu3.api" />
           <option name="contextFolderPath" value="$PROJECT_DIR$" />
-          <option name="portBindings">
-            <list>
-              <DockerPortBindingImpl>
-                <option name="containerPort" value="8080" />
-                <option name="hostIp" value="127.0.0.1" />
-                <option name="hostPort" value="8080" />
-              </DockerPortBindingImpl>
-            </list>
-          </option>
           <option name="sourceFilePath" value="WebApi-HU3.Api/Dockerfile" />
         </settings>
       </deployment>
@@ -139,55 +125,24 @@
       <method v="2" />
     </configuration>
     <configuration default="true" type="docker-deploy" factoryName="dockerfile" temporary="true">
-      <deployment type="dockerfile">
-        <settings />
-      </deployment>
-      <EXTENSION ID="com.jetbrains.rider.docker.debug" isFastModeEnabled="true" isSslEnabled="false" />
+      <deployment type="dockerfile" />
       <method v="2" />
     </configuration>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="52b2cc37-0dfc-4e19-bf6a-434de735dbb0" name="Changes" comment="" />
-      <created>1762430907612</created>
+      <changelist id="ba0c35e6-13c4-457a-94b5-61d9481cb8e4" name="Changes" comment="" />
+      <created>1762514918458</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1762430907612</updated>
-      <workItem from="1762430909146" duration="24000" />
-      <workItem from="1762430954111" duration="9283000" />
-      <workItem from="1762513575099" duration="1071000" />
+      <updated>1762514918458</updated>
+      <workItem from="1762514920974" duration="4423000" />
     </task>
-    <task id="LOCAL-00001">
-      <option name="closed" value="true" />
-      <created>1762435424596</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1762435424596</updated>
-    </task>
-    <task id="LOCAL-00002" summary="Initial commit">
-      <option name="closed" value="true" />
-      <created>1762467734126</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1762467734126</updated>
-    </task>
-    <task id="LOCAL-00003" summary="feat: controllers">
-      <option name="closed" value="true" />
-      <created>1762471132144</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1762471132144</updated>
-    </task>
-    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -202,9 +157,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-    <MESSAGE value="Initial commit" />
-    <MESSAGE value="feat: controllers" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: controllers" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
