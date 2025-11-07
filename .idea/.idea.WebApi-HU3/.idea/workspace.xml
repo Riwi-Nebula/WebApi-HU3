@@ -38,12 +38,12 @@
     &quot;assignee&quot;: &quot;Sarahorianna2006&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/Riwi-Nebula/WebApi-HU3.git",
-    "accountId": "80ad9dd3-9f6e-41b9-92c8-70de31e38f9f"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Riwi-Nebula/WebApi-HU3.git&quot;,
+    &quot;accountId&quot;: &quot;80ad9dd3-9f6e-41b9-92c8-70de31e38f9f&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/WebApi-HU3.Api/Controllers/AuthController.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/WebApi-HU3.Api/Controllers/StudentController.cs" root0="FORCE_HIGHLIGHTING" />
