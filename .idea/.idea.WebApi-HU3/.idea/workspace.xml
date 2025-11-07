@@ -10,12 +10,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ba0c35e6-13c4-457a-94b5-61d9481cb8e4" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.dockerignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.dockerignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.WebApi-HU3/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.WebApi-HU3/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Controllers/StudentController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Controllers/StudentController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Program.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/Program.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WebApi-HU3.sln" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/WebApi-HU3.Api/WebApi-HU3.Api.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/WebApi-HU3.Api/WebApi-HU3.Api.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compose.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
