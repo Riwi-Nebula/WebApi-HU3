@@ -5,7 +5,7 @@ using WebApi_HU3.Application.Interfaces;
 namespace WebApi_HU3.Api.Controllers;
 
 [ApiController]
-[Route("api/auth/[controller]")]
+[Route("api/[controller]")]
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
