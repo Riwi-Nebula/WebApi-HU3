@@ -178,6 +178,6 @@ fetch(url, {
 ---
 
 Api Diagrama
-![Casos de uso Api](./Assets/Images/API.png)
+![Casos de uso Api](Assets/Images/API.png)
 
 Fin de documento.
