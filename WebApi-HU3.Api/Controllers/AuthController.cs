@@ -22,7 +22,7 @@ public class AuthController : ControllerBase
     /// </summary>
     /// <param name="loginDto">DTO con Email y Password</param>
     /// <returns>JWT token o error</returns>
-    [HttpPost("login")]
+    [HttpPost("Login")]
     [ProducesResponseType(typeof(object), 200)]
     [ProducesResponseType(typeof(object), 400)]
     [ProducesResponseType(typeof(object), 401)]
@@ -52,7 +52,7 @@ public class AuthController : ControllerBase
     /// </summary>
     /// <param name="registerDto">DTO con Username, Email y Password</param>
     /// <returns>Mensaje de éxito o error</returns>
-    [HttpPost("register")]
+    [HttpPost("Register")]
     [ProducesResponseType(typeof(object), 200)]
     [ProducesResponseType(typeof(object), 400)]
     [ProducesResponseType(500)]
