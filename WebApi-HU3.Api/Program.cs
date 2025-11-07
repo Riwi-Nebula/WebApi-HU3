@@ -1,12 +1,14 @@
 using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore;
 using WebApi_HU3.Application.Interfaces;
 using WebApi_HU3.Application.Services;
 using WebApi_HU3.Domain.Interfaces;
-using WebApi_HU3.Infraestructure.Data;
 using WebApi_HU3.Infraestructure.Repositories;
-
-//using SchoolManagement.Infraestructure.Repositories;
+using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using WebApi_HU3.Infraestructure.Data;
+using WebApi_HU3.Infraestructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,30 +17,44 @@ var builder = WebApplication.CreateBuilder(args);
 // =======================================================
 
 // Obtiene la cadena desde appsettings.json
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-// ⚡ Configura EF Core con autodetección de versión MySQL
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString))
-);
+// Configura EF Core con autodetección de versión MySQL
 
+builder.Services.AddInfrastructure(builder.Configuration);
 // =======================================================
 // 2. Inyección de dependencias
 // =======================================================
 
+builder.Services.AddScoped<IAuthService, AuthService>();
 // Repositorios
-//Ejemplo:
-//builder.Services.AddScoped<IStudentRepository, StudentRepository>();
-
-// Servicios de aplicación
-//Ejemplo:
-//builder.Services.AddScoped<StudentService>();
+builder.Services.AddScoped<IStudentRepository, StudentRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
 
 
-// Servicios de aplicación
-//Ejemplo:
-//builder.Services.AddScoped<StudentService>();
+//Servicios de application
+builder.Services.AddScoped<IStudentService, StudentService>();
+builder.Services.AddScoped<IUserService, UserService>();
 
+//Configura el sistema de autenticación para validar tokens JWT en las solicitudes HTTP.
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true, 
+            ClockSkew = TimeSpan.Zero,
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(
+                Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)
+            )
+        };
+    });
+
+builder.Services.AddAuthorization();
 
 
 // =======================================================
@@ -51,31 +67,70 @@ builder.Services.AddSwaggerGen(c =>
 {
     c.SwaggerDoc("v1", new OpenApiInfo
     {
-        Title = "School Management API",
+        Title = "User,Student Management API",
         Version = "v1",
         Description = "API para la gestión de usuarios y estudiantes"
     });
+});
+
+// ======================
+//  CONFIGURACIÓN DE CORS
+// ======================
+var corsPolicyName = "AllowSpecificOrigins";
+
+builder.Services.AddCors( options =>
+{
+    options.AddPolicy("AllowAll",
+        policy =>
+        {
+            policy.AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod(); // si el front envía cookies o auth headers
+        });
 });
 
 // =======================================================
 // 4. Construcción y pipeline
 // =======================================================
 
-var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
+try
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
+    var app = builder.Build();
+    
+    // Test the connection to the database
+    using (var scope = app.Services.CreateScope())
     {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "School Management API v1");
-        c.RoutePrefix = string.Empty;
-    });
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        try
+        {
+            db.Database.OpenConnection();
+            Console.WriteLine("Connection to database successful.");
+            db.Database.CloseConnection();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error of connection: {ex.Message}");
+        }
+    }
+
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "School Management API v1");
+            c.RoutePrefix = string.Empty;
+        });
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthentication();
+    app.UseAuthorization();
+    app.MapControllers();
+    app.Run();
 }
-
-app.UseHttpsRedirection();
-app.UseAuthorization();
-app.MapControllers();
-app.Run();
-
-public partial class Program { }
+catch (Exception ex)
+{
+    Console.WriteLine($"❌ Error al iniciar la aplicación: {ex.Message}");
+    Console.WriteLine(ex.StackTrace);
+}
