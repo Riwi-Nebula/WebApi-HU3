@@ -16,7 +16,8 @@ public class UserController : ControllerBase
     {
         _userService = userService;
     }
-
+    
+    /*
     // 🔹 Registro de usuario (acceso público)
     [HttpPost("register")]
     [AllowAnonymous]
@@ -38,6 +39,7 @@ public class UserController : ControllerBase
     }
 
     // 🔹 Login (acceso público)
+
     [HttpPost("login")]
     [AllowAnonymous]
     public async Task<IActionResult> Login([FromBody] UserLoginDto loginDto)
@@ -56,6 +58,7 @@ public class UserController : ControllerBase
             return StatusCode(500, new { message = $"Error interno: {ex.Message}" });
         }
     }
+    */
 
     // 🔹 Obtener todos los usuarios (solo administradores)
     [HttpGet]

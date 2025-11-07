@@ -5,7 +5,9 @@ using WebApi_HU3.Domain.Interfaces;
 using WebApi_HU3.Infraestructure.Repositories;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using WebApi_HU3.Infraestructure.Data;
 using WebApi_HU3.Infraestructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -78,6 +80,22 @@ builder.Services.AddSwaggerGen(c =>
 try
 {
     var app = builder.Build();
+    
+    // Test the connection to the database
+    using (var scope = app.Services.CreateScope())
+    {
+        var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        try
+        {
+            db.Database.OpenConnection();
+            Console.WriteLine("Connection to database successful.");
+            db.Database.CloseConnection();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error of connection: {ex.Message}");
+        }
+    }
 
     if (app.Environment.IsDevelopment())
     {
