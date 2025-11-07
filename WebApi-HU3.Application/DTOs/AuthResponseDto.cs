@@ -4,5 +4,7 @@ namespace WebApi_HU3.Application.DTOs
     {
         public string Token { get; set; }
         public UserDto User { get; set; }
+        
+        public DateTime ExpiresAt { get; set; }
     }
 }

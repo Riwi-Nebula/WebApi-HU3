@@ -4,6 +4,7 @@ namespace WebApi_HU3.Domain.Interfaces;
 
 public interface IUserRepository
 {
+    public Task<User?> GetByUsernameAsync(string username);
     public Task<IEnumerable<User>> GetAllUser(); // Get All Users
     public Task<User> GetUserById(int id); // Get User By ID
     public Task<User> AddUser(User user); // Add User
