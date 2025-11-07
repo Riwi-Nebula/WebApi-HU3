@@ -1,0 +1,7 @@
+﻿services:
+  webapi-hu3.api:
+    image: webapi-hu3.api
+    build:
+      context: .
+      dockerfile: WebApi-HU3.Api/Dockerfile
+

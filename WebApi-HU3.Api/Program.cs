@@ -1,9 +1,7 @@
 using Microsoft.OpenApi.Models;
-using Microsoft.EntityFrameworkCore;
 using WebApi_HU3.Application.Interfaces;
 using WebApi_HU3.Application.Services;
 using WebApi_HU3.Domain.Interfaces;
-using WebApi_HU3.Infraestructure.Data;
 using WebApi_HU3.Infraestructure.Repositories;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -25,6 +23,7 @@ builder.Services.AddInfrastructure(builder.Configuration);
 // 2. Inyección de dependencias
 // =======================================================
 
+builder.Services.AddScoped<IAuthService, AuthService>();
 // Repositorios
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();

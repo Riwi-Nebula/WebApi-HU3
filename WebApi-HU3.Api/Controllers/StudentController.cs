@@ -8,7 +8,6 @@ namespace WebApi_HU3.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
-[Authorize]
 public class StudentController : ControllerBase
 {
     private readonly IStudentService _studentService;
